@@ -21,7 +21,7 @@ export default async function Budget() {
           <div className="grid lg:grid-cols-5">
             <Sidebar budgets={budgets} className="hidden lg:block" />
             <div className="col-span-3 lg:col-span-4 lg:border-l">
-              <div className="h-full py-6">
+              <div className="h-full pt-6">
                 <Tabs defaultValue="all" className="h-full space-y-6">
                   <div className="space-between flex items-center px-4">
                     <TabsList>
@@ -31,8 +31,8 @@ export default async function Budget() {
                         </TabsTrigger>
                       ))}
                     </TabsList>
-                    <div className="ml-auto mr-4 flex items-center gap-4">
-                      <DateRangePicker className="hidden md:block"/>
+                    <div className="ml-auto mr-4 hidden lg:flex items-center gap-4">
+                      <DateRangePicker />
                       <Button>
                         <PlusCircledIcon className="mr-2 h-4 w-4" />
                         Add transaction
@@ -45,17 +45,24 @@ export default async function Budget() {
                       key={tab.value}
                       value={tab.value}
                       className="border-none p-0 outline-none"
+                      style={{height: "calc(100vh - 124px)"}}
                     >
                       <Separator />
-                      <ResizablePanelGroup direction="horizontal" className="px-4">
+                      <ResizablePanelGroup
+                        direction="horizontal"
+                        className="px-4"
+                      >
                         <ResizablePanel defaultSize={70}>
-                          <div className="flex h-[640px] w-100 items-start p-2">
+                          <div className="flex h-full w-full items-start p-2">
                             <span className="font-semibold">One</span>
                           </div>
                         </ResizablePanel>
                         <ResizableHandle />
-                        <ResizablePanel defaultSize={30} className="hidden md:block">
-                          <div className="flex h-[640px] w-100 items-start p-2">
+                        <ResizablePanel
+                          defaultSize={30}
+                          className="hidden md:block"
+                        >
+                          <div className="flex h-full w-full items-start p-2">
                             <span className="font-semibold">Two</span>
                           </div>
                         </ResizablePanel>
