@@ -1,16 +1,17 @@
 import { PlusCircledIcon } from "@radix-ui/react-icons";
-import { Menu } from "../components/menu";
-import { Sidebar } from "../components/sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { budgets, tabs } from "../data/budgets";
+import { budgets, TableCategory, tableData, tabs } from "@/data/budgets";
 import { DateRangePicker } from "@/components/DateRangePicker";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
+import { Menu } from "@/components/menu";
+import { Sidebar } from "@/components/sidebar";
+import { TableComponent } from "@/components/Table";
 
 export default async function Budget() {
   return (
@@ -40,35 +41,52 @@ export default async function Budget() {
                     </div>
                   </div>
 
-                  {tabs.map((tab) => (
-                    <TabsContent
-                      key={tab.value}
-                      value={tab.value}
-                      className="border-none p-0 outline-none"
-                      style={{height: "calc(100vh - 124px)"}}
-                    >
-                      <Separator />
-                      <ResizablePanelGroup
-                        direction="horizontal"
-                        className="px-4"
+                  {tabs.map((tab) => {
+                    const currentTabValue: TableCategory =
+                      tab.value as TableCategory;
+
+                    return (
+                      <TabsContent
+                        key={tab.value}
+                        value={tab.value}
+                        className="border-none p-0 outline-none"
+                        style={{ height: "calc(100vh - 124px)" }}
                       >
-                        <ResizablePanel defaultSize={70}>
-                          <div className="flex h-full w-full items-start p-2">
-                            <span className="font-semibold">One</span>
-                          </div>
-                        </ResizablePanel>
-                        <ResizableHandle />
-                        <ResizablePanel
-                          defaultSize={30}
-                          className="hidden md:block"
+                        <Separator />
+                        <ResizablePanelGroup
+                          direction="horizontal"
+                          className="px-4"
                         >
-                          <div className="flex h-full w-full items-start p-2">
-                            <span className="font-semibold">Two</span>
-                          </div>
-                        </ResizablePanel>
-                      </ResizablePanelGroup>
-                    </TabsContent>
-                  ))}
+                          <ResizablePanel defaultSize={70}>
+                            <div className="flex flex-col h-full w-full items-start p-2">
+                              <div className="flex items-center justify-between w-full py-2">
+                                <div>
+                                  <Button variant="ghost">
+                                    <PlusCircledIcon className="mr-2 h-4 w-4" />
+                                    Category Group
+                                  </Button>
+                                </div>
+                                <div></div>
+                              </div>
+                              <Separator />
+                              <TableComponent
+                                data={tableData[currentTabValue]}
+                              />
+                            </div>
+                          </ResizablePanel>
+                          <ResizableHandle />
+                          <ResizablePanel
+                            defaultSize={30}
+                            className="hidden md:block"
+                          >
+                            <div className="flex h-full w-full items-start p-2">
+                              <span className="font-semibold">Two</span>
+                            </div>
+                          </ResizablePanel>
+                        </ResizablePanelGroup>
+                      </TabsContent>
+                    );
+                  })}
                 </Tabs>
               </div>
             </div>
