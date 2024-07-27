@@ -14,3 +14,27 @@ export const budgets = [
     "Health",
     "Others",
 ]
+
+export const tabs = [
+    {
+        value: "all",
+        label: "All",
+    },
+    {
+        value: "underfunded",
+        label: "Underfunded",
+    },
+    {
+        value: "overfunded",
+        label: "Overfunded",
+    },
+    {
+        value: "available",
+        label: "Available",
+    },
+    {
+        value: "snoozed",
+        label: "Snoozed",
+    },
+
+]

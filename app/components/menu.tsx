@@ -23,18 +23,18 @@ export function Menu() {
         <MenubarContent>
           <MenubarItem>About lusbnz</MenubarItem>
           <MenubarSeparator />
-          <MenubarItem>
+          <MenubarItem disabled>
             Preferences... <MenubarShortcut>⌘P</MenubarShortcut>
           </MenubarItem>
           <MenubarSeparator />
-          <MenubarItem>
-            Format Currency <MenubarShortcut>⌘C</MenubarShortcut>
+          <MenubarItem disabled>
+            Currency <MenubarShortcut>⌘C</MenubarShortcut>
           </MenubarItem>
-          <MenubarItem>
-            Format Datetime <MenubarShortcut>⌘D</MenubarShortcut>
+          <MenubarItem disabled>
+            Datetime <MenubarShortcut>⌘D</MenubarShortcut>
           </MenubarItem>
           <MenubarShortcut />
-          <MenubarItem>
+          <MenubarItem disabled>
             Quit Budget <MenubarShortcut>⌘Q</MenubarShortcut>
           </MenubarItem>
         </MenubarContent>
@@ -45,51 +45,48 @@ export function Menu() {
           <MenubarSub>
             <MenubarSubTrigger>New</MenubarSubTrigger>
             <MenubarSubContent className="w-[230px]">
-              <MenubarItem>
+              <MenubarItem disabled>
                 Budget <MenubarShortcut>⌘B</MenubarShortcut>
               </MenubarItem>
-              <MenubarItem>
+              <MenubarItem disabled>
                 Transaction <MenubarShortcut>⌘T</MenubarShortcut>
               </MenubarItem>
               <MenubarItem disabled>
-                Transaction from Budget <MenubarShortcut>⇧⌘T</MenubarShortcut>
-              </MenubarItem>
-              <MenubarItem>
                 Category <MenubarShortcut>⇧⌘C</MenubarShortcut>
               </MenubarItem>
               <MenubarItem disabled>AI Generate mode</MenubarItem>
-              <MenubarItem>Note</MenubarItem>
+              <MenubarItem disabled>Note</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
-          <MenubarItem>
+          <MenubarItem disabled>
             Close Window <MenubarShortcut>⌘W</MenubarShortcut>
           </MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
             <MenubarSubTrigger>History</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>Update Cloud History</MenubarItem>
-              <MenubarItem>Update AI mode</MenubarItem>
+              <MenubarItem disabled>Update Cloud History</MenubarItem>
+              <MenubarItem disabled>Update AI mode</MenubarItem>
               <MenubarSeparator />
-              <MenubarItem>Organize History...</MenubarItem>
-              <MenubarItem>Export History...</MenubarItem>
+              <MenubarItem disabled>Organize History</MenubarItem>
+              <MenubarItem disabled>Export History</MenubarItem>
               <MenubarSeparator />
-              <MenubarItem>Import Budget...</MenubarItem>
-              <MenubarItem disabled>Export Budget...</MenubarItem>
-              <MenubarItem>Show Duplicate Items</MenubarItem>
+              <MenubarItem disabled>Import Budget</MenubarItem>
+              <MenubarItem disabled>Export Budget</MenubarItem>
+              <MenubarItem disabled>Show Duplicate Items</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
-          <MenubarItem>
-            Import... <MenubarShortcut>⌘O</MenubarShortcut>
+          <MenubarItem disabled>
+            Import<MenubarShortcut>⌘O</MenubarShortcut>
           </MenubarItem>
-          <MenubarSeparator />
-          <MenubarItem>
-            Show in Finder <MenubarShortcut>⇧⌘R</MenubarShortcut>{" "}
-          </MenubarItem>
-          <MenubarItem>Convert</MenubarItem>
           <MenubarSeparator />
           <MenubarItem disabled>
-            Print... <MenubarShortcut>⌘P</MenubarShortcut>
+            Show in Finder <MenubarShortcut>⇧⌘R</MenubarShortcut>{" "}
+          </MenubarItem>
+          <MenubarItem disabled>Convert</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem disabled>
+            Print<MenubarShortcut>⌘P</MenubarShortcut>
           </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
@@ -110,10 +107,8 @@ export function Menu() {
             Paste <MenubarShortcut>⌘V</MenubarShortcut>
           </MenubarItem>
           <MenubarSeparator />
-          <MenubarItem>Hide Sidebar</MenubarItem>
-          <MenubarItem disabled>
-            Enter Full Screen
-          </MenubarItem>
+          <MenubarItem disabled>Hide Sidebar</MenubarItem>
+          <MenubarItem disabled>Enter Full Screen</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
@@ -122,14 +117,24 @@ export function Menu() {
           <MenubarLabel inset>Switch Account</MenubarLabel>
           <MenubarSeparator />
           <MenubarRadioGroup value="benoit">
-            <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
-            <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
-            <MenubarRadioItem value="luis">Luis</MenubarRadioItem>
+            <MenubarRadioItem value="andy" disabled>
+              Andy
+            </MenubarRadioItem>
+            <MenubarRadioItem value="benoit" disabled>
+              Benoit
+            </MenubarRadioItem>
+            <MenubarRadioItem value="luis" disabled>
+              Luis
+            </MenubarRadioItem>
           </MenubarRadioGroup>
           <MenubarSeparator />
-          <MenubarItem inset>Manage Account...</MenubarItem>
+          <MenubarItem inset disabled>
+            Manage Account
+          </MenubarItem>
           <MenubarSeparator />
-          <MenubarItem inset>Add Account...</MenubarItem>
+          <MenubarItem inset disabled>
+            Add Account
+          </MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
