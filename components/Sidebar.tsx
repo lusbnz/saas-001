@@ -9,7 +9,7 @@ import {
   IoArchiveOutline,
 } from "react-icons/io5";
 
-import { Budget } from "../data/budgets";
+import { Budget } from "@/data/budgets";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
