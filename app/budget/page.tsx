@@ -9,9 +9,9 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { Menu } from "@/components/menu";
-import { Sidebar } from "@/components/sidebar";
 import { TableComponent } from "@/components/Table";
+import { Menu } from "@/components/Menu";
+import { Sidebar } from "@/components/Sidebar";
 
 export default async function Budget() {
   return (
@@ -66,7 +66,9 @@ export default async function Budget() {
                                     Category Group
                                   </Button>
                                 </div>
-                                <div></div>
+                                <div>
+
+                                </div>
                               </div>
                               <Separator />
                               <TableComponent
