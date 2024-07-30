@@ -65,45 +65,49 @@ function getRandomValue(max: number) {
 }
 
 function createBudgetData() {
-    const categories = ["Food", "Transportation", "Shopping", "Entertainment", "Health", "Others"];
-    return categories.map((category: string) => {
-        const totalActivity = parseFloat(getRandomValue(500));
-        const totalAvailable = parseFloat(getRandomValue(500));
-        const totalAssigned = (totalActivity + totalAvailable).toFixed(2);
+    const categories = {
+        Bills: ["Rent House", "Personal Loans"],
+        Needs: ["Backup", "Groceries", "Gas"],
+        Wants: ["Dining Out", "Dating"]
+    };
 
-        const subItemsCount = 3;
+    return Object.entries(categories).map(([category, subcategories]) => {
+        const totalAssigned = parseFloat(getRandomValue(1000));
+        const totalActivity = parseFloat(getRandomValue(totalAssigned));
+        const totalAvailable = (totalAssigned - totalActivity).toFixed(2);
+
+        let subAssignedSum = 0;
         let subActivitySum = 0;
-        let subAvailableSum = 0;
 
-        const items = Array.from({ length: subItemsCount }, (_, index) => {
-            let subActivity, subAvailable;
+        const items = subcategories.map((subCategory, index) => {
+            let subAssigned, subActivity;
 
-            if (index === subItemsCount - 1) {
+            if (index === subcategories.length - 1) {
+                subAssigned = totalAssigned - subAssignedSum;
                 subActivity = totalActivity - subActivitySum;
-                subAvailable = totalAvailable - subAvailableSum;
             } else {
-                subActivity = parseFloat(getRandomValue(totalActivity - subActivitySum));
-                subAvailable = parseFloat(getRandomValue(totalAvailable - subAvailableSum));
+                subAssigned = parseFloat(getRandomValue(totalAssigned - subAssignedSum));
+                subActivity = parseFloat(getRandomValue(subAssigned));
             }
 
+            subAssignedSum += subAssigned;
             subActivitySum += subActivity;
-            subAvailableSum += subAvailable;
 
-            const subAssigned = (subActivity + subAvailable).toFixed(2);
+            const subAvailable = (subAssigned - subActivity).toFixed(2);
 
             return {
-                subCategory: `${category} Item ${index + 1}`,
-                assigned: `$${subAssigned}`,
-                activity: `$${subActivity.toFixed(2)}`,
-                available: `$${subAvailable.toFixed(2)}`
+                subCategory,
+                assigned: `$ ${subAssigned.toFixed(2)}`,
+                activity: `$ ${subActivity.toFixed(2)}`,
+                available: `$ ${subAvailable}`
             };
         });
 
         return {
             category,
-            assigned: `$${totalAssigned}`,
-            activity: `$${totalActivity.toFixed(2)}`,
-            available: `$${totalAvailable.toFixed(2)}`,
+            assigned: `$ ${totalAssigned.toFixed(2)}`,
+            activity: `$ ${totalActivity.toFixed(2)}`,
+            available: `$ ${totalAvailable}`,
             items
         };
     });

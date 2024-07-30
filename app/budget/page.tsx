@@ -1,4 +1,6 @@
-import { PlusCircledIcon } from "@radix-ui/react-icons";
+"use client";
+
+import { EnvelopeOpenIcon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -12,8 +14,17 @@ import {
 import { TableComponent } from "@/components/Table";
 import { Menu } from "@/components/Menu";
 import { Sidebar } from "@/components/Sidebar";
+import { useState } from "react";
+import RightSideContent from "@/components/RightSideContent";
+import { IoFilterOutline, IoOptionsOutline } from "react-icons/io5";
 
-export default async function Budget() {
+export default function Budget() {
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+
+  const handleSelectItem = (name: string) => {
+    setActiveItem(name);
+  };
+
   return (
     <div className="block">
       <Menu />
@@ -53,26 +64,25 @@ export default async function Budget() {
                         style={{ height: "calc(100vh - 124px)" }}
                       >
                         <Separator />
-                        <ResizablePanelGroup
-                          direction="horizontal"
-                          className="px-4"
-                        >
+                        <ResizablePanelGroup direction="horizontal">
                           <ResizablePanel defaultSize={70}>
-                            <div className="flex flex-col h-full w-full items-start p-2">
-                              <div className="flex items-center justify-between w-full py-2">
-                                <div>
-                                  <Button variant="ghost">
-                                    <PlusCircledIcon className="mr-2 h-4 w-4" />
+                            <div className="flex flex-col h-full w-full items-start p-4">
+                              <div className="flex items-center justify-between w-full">
+                                <div className="pb-4">
+                                  <Button variant="outline">
+                                    <PlusCircledIcon className="mr-2" />
                                     Category Group
                                   </Button>
                                 </div>
-                                <div>
-
+                                <div className="flex items-center gap-4">
+                                  {/* <IoFilterOutline />
+                                  <IoOptionsOutline /> */}
                                 </div>
                               </div>
                               <Separator />
                               <TableComponent
                                 data={tableData[currentTabValue]}
+                                handleSelectItem={handleSelectItem}
                               />
                             </div>
                           </ResizablePanel>
@@ -81,8 +91,8 @@ export default async function Budget() {
                             defaultSize={30}
                             className="hidden md:block"
                           >
-                            <div className="flex h-full w-full items-start p-2">
-                              <span className="font-semibold">Two</span>
+                            <div className="flex h-full w-full items-start">
+                              <RightSideContent item={activeItem} />
                             </div>
                           </ResizablePanel>
                         </ResizablePanelGroup>
