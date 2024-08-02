@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -7,18 +9,22 @@ import {
   IoServerOutline,
   IoCalendarOutline,
   IoArchiveOutline,
+  IoCopyOutline,
 } from "react-icons/io5";
 
 import { Budget } from "@/data/budgets";
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   budgets: Budget[];
 }
 
 export function Sidebar({ budgets }: SidebarProps) {
+  const pathname = usePathname();
+
   return (
     <div className="hidden lg:block space-y-4 py-4">
       <div className="px-3 py-2">
@@ -30,7 +36,10 @@ export function Sidebar({ budgets }: SidebarProps) {
             href="/budget"
             className="flex items-center w-full justify-start"
           >
-            <Button variant="secondary" className="w-full justify-start">
+            <Button
+              variant={pathname === "/budget" ? "secondary" : "ghost"}
+              className="w-full justify-start"
+            >
               <IoWalletOutline className="mr-2" />
               Budget
             </Button>
@@ -39,59 +48,89 @@ export function Sidebar({ budgets }: SidebarProps) {
             href="/reports"
             className="flex items-center w-full justify-start"
           >
-            <Button variant="ghost" className="w-full justify-start">
+            <Button
+              variant={pathname === "/reports" ? "secondary" : "ghost"}
+              className="w-full justify-start"
+            >
               <IoCellularOutline className="mr-2" />
               Reports
             </Button>
           </Link>
-          <Button variant="ghost" className="w-full justify-start">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2 h-4 w-4"
+          <Link
+            href="/accounts"
+            className="flex items-center w-full justify-start"
+          >
+            <Button
+              variant={pathname === "/accounts" ? "secondary" : "ghost"}
+              className="w-full justify-start"
             >
-              <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
-              <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
-              <circle cx="12" cy="12" r="2" />
-              <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
-              <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
-            </svg>
-            All Accounts
-          </Button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="mr-2 h-4 w-4"
+              >
+                <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9" />
+                <path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5" />
+                <circle cx="12" cy="12" r="2" />
+                <path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5" />
+                <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
+              </svg>
+              All Accounts
+            </Button>
+          </Link>
         </div>
       </div>
       <Separator />
       <div className="px-3 py-2">
-        <Button variant="ghost" className="w-full justify-start">
-          <IoCalendarOutline className="mr-2" />
-          Calendar
-        </Button>
-        <Button variant="ghost" className="w-full justify-start">
-          <IoArchiveOutline className="mr-2" />
-          Task Management
-        </Button>
+        <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+          Management
+        </h2>
+        <div className="space-y-1">
+          <Button variant="ghost" disabled className="w-full justify-start">
+            <IoCalendarOutline className="mr-2" />
+            Calendar
+          </Button>
+          <Button variant="ghost" disabled className="w-full justify-start">
+            <IoArchiveOutline className="mr-2" />
+            Task Management
+          </Button>
+          <Button variant="ghost" disabled className="w-full justify-start">
+            <IoCopyOutline className="mr-2" />
+            Tracking Panel
+          </Button>
+        </div>
       </div>
       <Separator />
       <div className="py-2">
         <h2 className="relative px-7 text-lg font-semibold tracking-tight">
           Budget
         </h2>
-        <ScrollArea className="h-[280px] px-1">
+        <ScrollArea className="h-[236px] px-1">
           <div className="space-y-1 p-2">
             {budgets?.map((budget, i) => (
-              <Button
-                key={`${budget}-${i}`}
-                variant="ghost"
-                className="w-full justify-start font-normal"
+              <Link
+                key={`${budget.value}-${i}`}
+                href={`/accounts/${budget.value}`}
+                className="flex items-center w-full justify-start"
               >
-                <IoServerOutline className="mr-2" />
-                {budget}
-              </Button>
+                <Button
+                  key={`${budget.value}-${i}`}
+                  variant={
+                    pathname === `/accounts/${budget.value}`
+                      ? "secondary"
+                      : "ghost"
+                  }
+                  className="w-full justify-start font-normal"
+                >
+                  <IoServerOutline className="mr-2" />
+                  {budget.label}
+                </Button>
+              </Link>
             ))}
           </div>
         </ScrollArea>
