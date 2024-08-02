@@ -26,19 +26,24 @@ export function Sidebar({ budgets }: SidebarProps) {
           Discover
         </h2>
         <div className="space-y-1">
-          <Button variant="secondary" className="w-full justify-start">
-            <Link
-              href="/budget"
-              className="flex items-center w-full justify-start"
-            >
+          <Link
+            href="/budget"
+            className="flex items-center w-full justify-start"
+          >
+            <Button variant="secondary" className="w-full justify-start">
               <IoWalletOutline className="mr-2" />
               Budget
-            </Link>
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
-            <IoCellularOutline className="mr-2" />
-            Reports
-          </Button>
+            </Button>
+          </Link>
+          <Link
+            href="/reports"
+            className="flex items-center w-full justify-start"
+          >
+            <Button variant="ghost" className="w-full justify-start">
+              <IoCellularOutline className="mr-2" />
+              Reports
+            </Button>
+          </Link>
           <Button variant="ghost" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
