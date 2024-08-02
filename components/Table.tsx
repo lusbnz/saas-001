@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/table";
 import { BudgetItem } from "@/data/budgets";
 import React, { useEffect, useState } from "react";
-import { ScrollArea } from "./ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Progress } from "@/components/ui/progress";
 
 interface TableComponentProps {
   data: BudgetItem[];
@@ -40,6 +41,29 @@ export function TableComponent({
     );
   };
 
+  const getCheckedBackgroundColor = (
+    assigned: string,
+    available: string
+  ): { backgroundColor: string; progressValue: number } => {
+    const assignedNum = parseFloat(assigned.slice(1)) || 0;
+    const availableNum = parseFloat(available.slice(1)) || 0;
+
+    const progressValue =
+      availableNum > 0 ? (availableNum / assignedNum) * 100 : 0;
+
+    const backgroundColor =
+      availableNum > assignedNum / 2
+        ? "#65C01F"
+        : availableNum > 0
+        ? "#F8D655"
+        : "#EF4444";
+
+    return {
+      backgroundColor,
+      progressValue,
+    };
+  };
+
   return (
     <ScrollArea className="h-[600px] flex w-full">
       <Table>
@@ -61,27 +85,55 @@ export function TableComponent({
                 <TableCell className="font-medium">{item.category}</TableCell>
                 <TableCell className="text-right">{item.assigned}</TableCell>
                 <TableCell className="text-right">{item.activity}</TableCell>
-                <TableCell className="text-right">{item.available}</TableCell>
+                <TableCell className="text-right font-[600] pr-[10px]">
+                  {item.available}
+                </TableCell>
               </TableRow>
               {expandedRows.includes(item.category) &&
                 item.items &&
-                item.items.map((subItem: any) => (
-                  <TableRow
-                    key={subItem.subCategory}
-                    onClick={() => handleSelectItem(subItem.subCategory)}
-                  >
-                    <TableCell>{subItem.subCategory}</TableCell>
-                    <TableCell className="text-right">
-                      {subItem.assigned}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {subItem.activity}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      {subItem.available}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                item.items.map((subItem: any) => {
+                  const { backgroundColor, progressValue } =
+                    getCheckedBackgroundColor(
+                      subItem.assigned,
+                      subItem.available
+                    );
+
+                  return (
+                    <TableRow
+                      style={{ cursor: "pointer" }}
+                      key={subItem.subCategory}
+                      onClick={() => handleSelectItem(subItem.subCategory)}
+                    >
+                      <TableCell>
+                        <div className="flex flex-col items-start gap-1">
+                          <span>{subItem.subCategory}</span>
+                          <Progress
+                            value={progressValue}
+                            backgroundColor={backgroundColor}
+                          />
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {subItem.assigned}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {subItem.activity}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <span
+                          style={{
+                            backgroundColor: backgroundColor,
+                            padding: "2px 8px",
+                            borderRadius: "16px",
+                            opacity: 0.8,
+                          }}
+                        >
+                          {subItem.available}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </React.Fragment>
           ))}
         </TableBody>

@@ -16,13 +16,17 @@ import { Menu } from "@/components/Menu";
 import { Sidebar } from "@/components/Sidebar";
 import { useState } from "react";
 import RightSideContent from "@/components/RightSideContent";
-import { IoFilterOutline, IoOptionsOutline } from "react-icons/io5";
+import { IoRefreshOutline, IoRepeatOutline } from "react-icons/io5";
 
 export default function Budget() {
   const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const handleSelectItem = (name: string) => {
-    setActiveItem(name);
+    if (activeItem === name) {
+      setActiveItem(null);
+    } else {
+      setActiveItem(name);
+    }
   };
 
   return (
@@ -65,19 +69,24 @@ export default function Budget() {
                       >
                         <Separator />
                         <ResizablePanelGroup direction="horizontal">
-                          <ResizablePanel defaultSize={70}>
+                          <ResizablePanel defaultSize={70} maxSize={75}>
                             <div className="flex flex-col h-full w-full items-start p-4">
                               <div className="flex items-center justify-between w-full">
-                                <div className="pb-4">
+                                <div className="pb-4 flex items-center gap-2">
                                   <Button variant="outline">
                                     <PlusCircledIcon className="mr-2" />
                                     Category Group
                                   </Button>
+                                  <Button variant="outline">
+                                    <IoRepeatOutline className="mr-2" />
+                                    Undo
+                                  </Button>
+                                  <Button variant="outline">
+                                    <IoRefreshOutline className="mr-2" />
+                                    Recent Move
+                                  </Button>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                  {/* <IoFilterOutline />
-                                  <IoOptionsOutline /> */}
-                                </div>
+                                <div className="flex items-center gap-4"></div>
                               </div>
                               <Separator />
                               <TableComponent
@@ -89,10 +98,14 @@ export default function Budget() {
                           <ResizableHandle />
                           <ResizablePanel
                             defaultSize={30}
-                            className="hidden md:block"
+                            maxSize={70}
+                            className="hidden lg:block"
                           >
                             <div className="flex h-full w-full items-start">
-                              <RightSideContent item={activeItem} />
+                              <RightSideContent
+                                item={activeItem}
+                                tab={tab.label}
+                              />
                             </div>
                           </ResizablePanel>
                         </ResizablePanelGroup>
