@@ -9,32 +9,68 @@ export interface BudgetItem {
     activity: string;
     available: string;
     items?: SubItem[];
-  }
-  
+}
+
 export interface SubItem {
     subCategory: string;
     assigned: string;
     activity: string;
     available: string;
-  }
+}
 
 export type TableData = {
     [key in TableCategory]: BudgetItem[];
 };
 
 export const budgets = [
-    "All income",
-    "Salary",
-    "Saving",
-    "Investment",
-    "Credit card",
-    "Car",
-    "Groceries",
-    "Bills",
-    "Taxes",
-    "Entertainment",
-    "Health",
-    "Others",
+    {
+        value: "all_income",
+        label: "All income",
+    },
+    {
+        value: "salary",
+        label: "Salary",
+    },
+    {
+        value: "saving",
+        label: "Saving",
+    },
+    {
+        value: "investment",
+        label: "Investment",
+    },
+    {
+        value: "credit_card",
+        label: "Credit card",
+    },
+    {
+        value: "car",
+        label: "Car",
+    },
+    {
+        value: "groceries",
+        label: "Groceries",
+    },
+    {
+        value: "bills",
+        label: "Bills",
+    },
+    {
+        value: "taxes",
+        label: "Taxes",
+    },
+    {
+        value: "entertainment",
+        label: "Entertainment",
+    },
+    {
+        value: "health",
+        label: "Health",
+    },
+    {
+        value: "others",
+        label: "Others",
+    }
 ]
 
 export const tabs = [
@@ -58,6 +94,21 @@ export const tabs = [
         value: "snoozed",
         label: "Snoozed",
     },
+]
+
+export const reports = [
+    {
+        value: "spending",
+        label: "Spending",
+    },
+    {
+        value: "net_worth",
+        label: "Net Worth",
+    },
+    {
+        value: "incomes_expenses",
+        label: "Incomes & Expenses",
+    }
 ]
 
 function getRandomValue(max: number) {

@@ -1,10 +1,10 @@
 "use client";
 
-import { EnvelopeOpenIcon, PlusCircledIcon } from "@radix-ui/react-icons";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { budgets, TableCategory, tableData, tabs } from "@/data/budgets";
+import { TableCategory, tableData, tabs } from "@/data/budgets";
 import { DateRangePicker } from "@/components/DateRangePicker";
 import {
   ResizableHandle,
@@ -12,11 +12,9 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { TableComponent } from "@/components/Table";
-import { Menu } from "@/components/Menu";
-import { Sidebar } from "@/components/Sidebar";
 import { useState } from "react";
 import RightSideContent from "@/components/RightSideContent";
-import { IoRefreshOutline, IoRepeatOutline } from "react-icons/io5";
+import { IoFilterOutline, IoOptionsOutline, IoRefreshOutline, IoReorderThreeOutline, IoReorderTwoOutline, IoRepeatOutline } from "react-icons/io5";
 
 export default function Budget() {
   const [activeItem, setActiveItem] = useState<string | null>(null);
@@ -42,7 +40,7 @@ export default function Budget() {
           </TabsList>
           <div className="ml-auto mr-4 hidden lg:flex items-center gap-4">
             <DateRangePicker />
-            <Button>
+            <Button variant={"outline"}>
               <PlusCircledIcon className="mr-2 h-4 w-4" />
               Add transaction
             </Button>
@@ -61,7 +59,7 @@ export default function Budget() {
             >
               <Separator />
               <ResizablePanelGroup direction="horizontal">
-                <ResizablePanel defaultSize={70} maxSize={75}>
+                <ResizablePanel defaultSize={70} maxSize={70}>
                   <div className="flex flex-col h-full w-full items-start p-4">
                     <div className="flex items-center justify-between w-full">
                       <div className="pb-4 flex items-center gap-2">
@@ -78,7 +76,16 @@ export default function Budget() {
                           Recent Move
                         </Button>
                       </div>
-                      <div className="flex items-center gap-4"></div>
+                      <div className="pb-4 flex items-center gap-2">
+                        <Button variant="outline">
+                          <IoFilterOutline className="mr-2" />
+                          Filter
+                        </Button>
+                        <Button variant="outline">
+                          <IoOptionsOutline className="mr-2" />
+                          View
+                        </Button>
+                      </div>
                     </div>
                     <Separator />
                     <TableComponent
@@ -90,7 +97,7 @@ export default function Budget() {
                 <ResizableHandle />
                 <ResizablePanel
                   defaultSize={30}
-                  maxSize={70}
+                  maxSize={50}
                   className="hidden lg:block"
                 >
                   <div className="flex h-full w-full items-start">
