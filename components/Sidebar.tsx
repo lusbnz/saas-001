@@ -110,7 +110,7 @@ export function Sidebar({ budgets }: SidebarProps) {
         <h2 className="relative px-7 text-lg font-semibold tracking-tight">
           Budget
         </h2>
-        <ScrollArea className="h-[236px] px-1">
+        <ScrollArea className="h-[200px] px-1">
           <div className="space-y-1 p-2">
             {budgets?.map((budget, i) => (
               <Link
