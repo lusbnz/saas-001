@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="block">
+        <div className="block hide-scrollbar">
           <Menu />
           <div className="border-t">
             <div className="bg-background">

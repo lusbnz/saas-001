@@ -14,7 +14,7 @@ interface RightSideContentProps {
 const RightSideContent: React.FC<RightSideContentProps> = ({ item, tab }) => {
   return (
     <div
-      className="flex flex-col h-full w-full bg-[#F8FAFC] p-4 gap-4"
+      className="hide-scrollbar flex flex-col h-full w-full bg-[#F8FAFC] p-4 gap-4"
       style={{ overflowY: "auto" }}
     >
       {item && (

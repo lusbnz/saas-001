@@ -103,7 +103,7 @@ export default function Reports() {
               >
                 <div className="flex h-full w-full items-start">
                   <div
-                    className="flex flex-col h-full w-full bg-[#F8FAFC] p-4 gap-4"
+                    className="hide-scrollbar flex flex-col h-full w-full bg-[#F8FAFC] p-4 gap-4"
                     style={{ overflowY: "auto" }}
                   >
                     Right Side Content

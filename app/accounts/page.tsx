@@ -13,6 +13,15 @@ import {
   IoReorderThreeOutline,
   IoOptionsOutline,
 } from "react-icons/io5";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { accountData } from "@/data/budgets";
 
 export default function Accounts() {
   return (
@@ -54,8 +63,9 @@ export default function Accounts() {
             </div>
             <div className="items-center gap-2 w-100 hidden lg:flex">
               <Button variant={"outline"}>
-              <IoOptionsOutline className="mr-2" />
-              View</Button>
+                <IoOptionsOutline className="mr-2" />
+                View
+              </Button>
 
               <div className="relative mr-2 w-[200px]">
                 <IoSearchOutline className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -70,7 +80,34 @@ export default function Accounts() {
 
           <Separator />
 
-          <div className="flex w-100 h-100 p-4">Content</div>
+          <div className="flex w-100 h-100 p-4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Account</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Owner</TableHead>
+                  <TableHead>Category</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead>Outflow</TableHead>
+                  <TableHead>Inflow</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {accountData.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{row.account}</TableCell>
+                    <TableCell>{row.date}</TableCell>
+                    <TableCell>{row.owner}</TableCell>
+                    <TableCell>{row.category}</TableCell>
+                    <TableCell>{row.description}</TableCell>
+                    <TableCell>{row.outflow}</TableCell>
+                    <TableCell>{row.inflow}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </div>
       </div>
     </div>

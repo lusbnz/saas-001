@@ -171,3 +171,18 @@ export const tableData: TableData = {
     available: createBudgetData(),
     snoozed: createBudgetData(),
 };
+
+export const accountData = [
+    { account: '12345', date: '2024-08-01', owner: 'John Doe', category: 'Salary', description: 'Monthly salary', outflow: 0, inflow: 3000 },
+    { account: '67890', date: '2024-08-02', owner: 'Jane Smith', category: 'Groceries', description: 'Weekly groceries', outflow: 150, inflow: 0 },
+    { account: '11223', date: '2024-08-03', owner: 'Alice Johnson', category: 'Gas', description: 'Car fuel', outflow: 60, inflow: 0 },
+    { account: '44556', date: '2024-08-04', owner: 'Michael Brown', category: 'Dining Out', description: 'Dinner with friends', outflow: 80, inflow: 0 },
+    { account: '77889', date: '2024-08-05', owner: 'Emily Davis', category: 'Backup', description: 'Emergency savings', outflow: 200, inflow: 0 },
+    { account: '99000', date: '2024-08-06', owner: 'Sarah Wilson', category: 'Personal Loans', description: 'Loan repayment', outflow: 300, inflow: 0 },
+    { account: '12346', date: '2024-08-07', owner: 'David Lee', category: 'Rent House', description: 'Monthly rent', outflow: 1200, inflow: 0 },
+    { account: '67891', date: '2024-08-08', owner: 'Laura Clark', category: 'Groceries', description: 'Weekly groceries', outflow: 155, inflow: 0 },
+    { account: '11224', date: '2024-08-09', owner: 'James Turner', category: 'Gas', description: 'Car fuel', outflow: 65, inflow: 0 },
+    { account: '44557', date: '2024-08-10', owner: 'Olivia Walker', category: 'Dining Out', description: 'Lunch with colleagues', outflow: 90, inflow: 0 },
+    { account: '77890', date: '2024-08-11', owner: 'William Scott', category: 'Backup', description: 'Emergency fund', outflow: 210, inflow: 0 },
+    { account: '99001', date: '2024-08-12', owner: 'Sophia Lewis', category: 'Personal Loans', description: 'Loan repayment', outflow: 310, inflow: 0 },
+];
